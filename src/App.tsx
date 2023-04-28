@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Layout } from "./components/layout";
+import {
+  Box,
+  Button,
+  Center,
+  ChakraProvider,
+  Input
+} from '@chakra-ui/react'
+import { ButtonMy } from "./components/button";
+import './globalStyle.css'
+import { Header } from "./components/header";
+import { Card } from "./components/card";
+import { login } from "./services/login";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+        <Header></Header>
+        <Box minHeight="100vh" backgroundColor="#9413dc" padding="25px">
+          <Box backgroundColor="#FFFFFF" padding="15px" borderRadius="25px">
+            <Card></Card>
+            <ButtonMy onClick={login} />
+          </Box>
+        </Box> 
+    </ChakraProvider>
   );
 }
 
