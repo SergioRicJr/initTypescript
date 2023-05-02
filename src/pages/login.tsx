@@ -8,10 +8,26 @@ import { ButtonMy } from "../components/button";
 import '../globalStyle.css'
 import { Card } from "../components/card";
 import { login } from "../services/login";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../components/appcontext';
+import { changeLocalStorage } from '../services/storage';
 
 function Login() {
-    const [email, setEmail] = useState('')  
+    const [email, setEmail] = useState<string>('')  
+    const {setIsLoggedIn} = useContext(AppContext)
+    const navigate = useNavigate()
+
+    const validateUser = async (email: string): Promise<void> => {
+        const loggedIn = await login(email)
+        if(!loggedIn) {
+            alert('Email inválido')
+        } else {
+            setIsLoggedIn(true)
+            changeLocalStorage({login: true})
+            navigate('/conta/1')
+        }
+    }
 
     return (
         <ChakraProvider>
@@ -29,7 +45,7 @@ function Login() {
                     </Center>
                     <Input placeholder="email" value={email} onChange={(event)=> { setEmail(event.target.value)}} />
                     <Input placeholder="password" />
-                    <ButtonMy onClick={()=> login(email)} />
+                    <ButtonMy onClick={()=> validateUser(email)} />
                 </Card>
             </Box> 
             

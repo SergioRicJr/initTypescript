@@ -21,9 +21,9 @@ export const Conta = () => {
     const {id} = useParams()
     console.log(id)
     const nav = useNavigate()
-    if(id !== userData?.id) {
-        nav("/")
-    }
+    // if(id !== userData?.id) {
+    //     nav("/")
+    // }
 
     const {user, isLoggedIn} = useContext(AppContext)
     //se não estiver logado vai ser redirecionado para "/"
