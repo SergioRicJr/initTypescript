@@ -1,19 +1,20 @@
-import { Center, Input } from "@chakra-ui/react"
+import { Box, Center, Input } from "@chakra-ui/react"
+// import { useCallback, useEffect, useState } from "react"
+// import { ButtonMy } from "../button"
+// import { login } from "../../services/login"
+// import { api } from "../../services/api"
+// import { IUserData } from "./interfaces"
 
-interface ICard {
-  id?: number,
-  paragraph?: string,
-  details?: string
-}
+// interface ICard {
+//   id?: number,
+//   paragraph?: string,
+//   details?: string
+// }
 
-export const Card = ({ id, paragraph, details }: ICard) => {
+export const Card = ({children}:any) => {
   return(
-    <>
-      <Center>
-        <h1>Faça o login</h1>
-      </Center>
-      <Input placeholder="email" />
-      <Input placeholder="password" />
-    </>
+    <Box backgroundColor="#FFFFFF" padding="15px" borderRadius="25px">
+        {children}
+    </Box>
   )
 }

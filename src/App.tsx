@@ -1,29 +1,31 @@
-import { Layout } from "./components/layout";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import {
-  Box,
-  Button,
-  Center,
   ChakraProvider,
-  Input
 } from '@chakra-ui/react'
-import { ButtonMy } from "./components/button";
-import './globalStyle.css'
-import { Header } from "./components/header";
-import { Card } from "./components/card";
-import { login } from "./services/login";
+import Login from './pages/login'
+import { Conta } from './pages/conta'
+import { Layout } from './components/layout'
+import ContaInfo from './pages/contaInfo'
+import { AppContextProvider } from './components/appcontext'
 
-function App() {
+
+const App = () => {
   return (
-    <ChakraProvider>
-        <Header></Header>
-        <Box minHeight="100vh" backgroundColor="#9413dc" padding="25px">
-          <Box backgroundColor="#FFFFFF" padding="15px" borderRadius="25px">
-            <Card></Card>
-            <ButtonMy onClick={login} />
-          </Box>
-        </Box> 
-    </ChakraProvider>
-  );
+    <AppContextProvider>
+      <ChakraProvider>
+          <Layout>
+            <Router>
+              <Routes>
+                <Route path='/' element={<Login/>}/>
+                <Route path='/conta/:id' element={<Conta/>}/>
+                <Route path='/infoconta' element={<ContaInfo/>}/>
+              </Routes>
+            </Router>
+          </Layout>
+      </ChakraProvider>
+    </AppContextProvider>
+  )
 }
 
-export default App;
+export default App
+
