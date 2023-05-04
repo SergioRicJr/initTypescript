@@ -4,7 +4,7 @@ import { getAllLocalStorage } from "../../services/storage"
 interface IAppContext {
     user: string
     isLoggedIn: boolean
-    setIsLoggedIn: (isLoggedIn: boolean)=> void
+    setIsLoggedIn: (isLoggedIn: boolean)=> void 
   }
   
   export const AppContext = createContext({} as IAppContext)

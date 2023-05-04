@@ -25,6 +25,7 @@ export const Header  = () => {
             <Spacer/>
             <Button onClick={()=> {
               changeLocalStorage({login: false})
+              localStorage.removeItem("infoUserLogado")
               setIsLoggedIn(false)
               }
             } >

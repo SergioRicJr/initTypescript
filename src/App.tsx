@@ -9,7 +9,7 @@ import ContaInfo from './pages/contaInfo'
 import { AppContextProvider } from './components/appcontext'
 import MainRoutes from './routes'
 import { changeLocalStorage, createLocalStorage, getAllLocalStorage } from './services/storage'
-
+import ContextEmailProvider from './components/contextemail/index'
 
 const App = () => {
   if (!getAllLocalStorage()) {
@@ -17,13 +17,15 @@ const App = () => {
   }
 
   return (
-    <AppContextProvider>
-      <ChakraProvider>
-          <Layout>
-            <MainRoutes/>
-          </Layout>
-      </ChakraProvider>
-    </AppContextProvider>
+      <AppContextProvider>
+        <ContextEmailProvider>
+          <ChakraProvider>
+              <Layout>
+                <MainRoutes/>
+              </Layout>
+          </ChakraProvider>
+        </ContextEmailProvider>
+      </AppContextProvider>
   )
 }
 

@@ -28,6 +28,7 @@ function Login() {
         } else {
             setIsLoggedIn(true)
             changeLocalStorage({login: true})
+            localStorage.setItem("infoUserLogado", JSON.stringify({email: email}))
             navigate('/conta/1')
         }
     }
