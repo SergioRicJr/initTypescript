@@ -16,12 +16,15 @@ import { changeLocalStorage } from '../services/storage';
 function Login() {
     const [email, setEmail] = useState<string>('')  
     const {setIsLoggedIn} = useContext(AppContext)
+
+    const [password, setPassword] = useState<string>('')
+
     const navigate = useNavigate()
 
-    const validateUser = async (email: string): Promise<void> => {
-        const loggedIn = await login(email)
+    const validateUser = async (email: string, password: string): Promise<void> => {
+        const loggedIn = await login(email, password)
         if(!loggedIn) {
-            alert('Email inválido')
+            alert('Email e/ou senha inválidos')
         } else {
             setIsLoggedIn(true)
             changeLocalStorage({login: true})
@@ -44,8 +47,8 @@ function Login() {
                         } */}
                     </Center>
                     <Input placeholder="email" value={email} onChange={(event)=> { setEmail(event.target.value)}} />
-                    <Input placeholder="password" />
-                    <ButtonMy onClick={()=> validateUser(email)} />
+                    <Input placeholder="password" value={password} onChange={(event)=> {setPassword(event.target.value)}} />
+                    <ButtonMy onClick={()=> validateUser(email, password)} />
                 </Card>
             </Box> 
             

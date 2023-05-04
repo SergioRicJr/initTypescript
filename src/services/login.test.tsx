@@ -23,19 +23,25 @@ describe("login", ()=> {
     window.alert = mockAlert
 
     const mockEmail = 'meuEmail@gmail.com'
-
-
+    const mockPassword = '123'
 
     it("Deve exibir um alert com boas vindas", async ()=> {
-        const response = await login(mockEmail)
+        const response = await login(mockEmail, mockPassword)
         expect(response).toBeTruthy()
         // expect(mockNavigate).toHaveBeenCalledWith('/1')
         // expect(mockSetIsLoggedIn).toHaveBeenCalledWith(true)
         // expect(window.alert).toHaveBeenCalledWith("Bem vindo a minha aplicação de teste meuEmail@gmail.com")
     })
 
-    it("Não deve exibir a mensagem de boas vindas sem o email", async ()=> {
-        const response = await login('EMAIL@invalido.com')
+    it("Não deve exibir a mensagem de boas vindas com o email invalido", async ()=> {
+        const response = await login('EMAIL@invalido.com', '1212')
+        expect(response).toBeFalsy()
+        // expect(mockSetIsLoggedIn).toHaveBeenCalledWith(true)
+        // expect(window.alert).not.toHaveBeenCalledWith("Bem vindo a minha aplicação de teste ")
+    })
+
+    it("Não deve exibir a mensagem de boas vindas com senha invalida", async ()=> {
+        const response = await login(mockEmail, '1212')
         expect(response).toBeFalsy()
         // expect(mockSetIsLoggedIn).toHaveBeenCalledWith(true)
         // expect(window.alert).not.toHaveBeenCalledWith("Bem vindo a minha aplicação de teste ")

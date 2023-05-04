@@ -4,14 +4,14 @@ import { api } from "./api"
 import { AppContext } from "../components/appcontext"
 import { useNavigate } from "react-router-dom"
 
-export const login = async (email: string): Promise<boolean> => {
+export const login = async (email: string, password: string): Promise<boolean> => {
     // const {setIsLoggedIn} = useContext(AppContext)
     
     // const navigate = useNavigate()
     
     const data = await api as IUserData
 
-    if (email !== data.email) {
+    if (email !== data.email || password !== data.password) {
         return false
     }
     // setIsLoggedIn(true)
